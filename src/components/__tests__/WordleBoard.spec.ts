@@ -1,6 +1,6 @@
+import WordleBoard from '@/components/WordleBoard.vue'
 import { DEFEAT_MESSAGE, VICTORY_MESSAGE } from '@/settings'
 import { mount } from '@vue/test-utils'
-import WordleBoard from '../WordleBoard.vue'
 
 describe('WordleBoard', () => {
   const wordOfTheDay = 'TESTS'
