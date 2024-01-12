@@ -6,7 +6,8 @@ import { ref, watchEffect } from 'vue'
 defineProps({
   wordOfTheDay: {
     type: String,
-    validator: (value: string) => englishWords.includes(value)
+    validator: (value: string) => englishWords.includes(value),
+    required: true
   }
 })
 
