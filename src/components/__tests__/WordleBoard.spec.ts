@@ -61,9 +61,29 @@ describe('WordleBoard', () => {
   })
 
   describe('Player input', () => {
-    test.todo('player guesses are limited to 5 letters')
-    test.todo('player guesses can only be submitted if they are real words')
-    test.todo('player guesses are not case-sensitive')
-    test.todo('player guesses can only contain letters')
+    test('player guesses are limited to 5 letters', async () => {
+      await playerSubmitsGuess(wordOfTheDay + 'EXTRA')
+
+      expect(wrapper.text()).toContain(VICTORY_MESSAGE)
+    })
+
+    test('player guesses can only be submitted if they are real words', async () => {
+      await playerSubmitsGuess('QWERT')
+
+      expect(wrapper.text()).not.toContain(VICTORY_MESSAGE)
+      expect(wrapper.text()).not.toContain(DEFEAT_MESSAGE)
+    })
+
+    test('player guesses are not case-sensitive', async () => {
+      await playerSubmitsGuess(wordOfTheDay.toLowerCase())
+
+      expect(wrapper.text()).toContain(VICTORY_MESSAGE)
+    })
+
+    test('player guesses can only contain letters', async () => {
+      await playerSubmitsGuess('T3ST!')
+
+      expect(wrapper.find<HTMLInputElement>('input[type=text]').element.value).toEqual('TST')
+    })
   })
 })
